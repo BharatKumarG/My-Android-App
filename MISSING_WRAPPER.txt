@@ -1,0 +1,1 @@
+This repository does not include the Gradle wrapper binaries. When you push to GitHub, Actions will download Gradle automatically. Locally, run `gradle wrapper` or install Gradle.

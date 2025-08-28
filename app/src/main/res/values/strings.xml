@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyAndroidAppEnhanced</string>
+    <string name="add_task">Add Task</string>
+    <string name="no_tasks">No tasks yet</string>
+    <string name="add_first_task">Tap + to add your first task</string>
+</resources>

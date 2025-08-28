@@ -1,8 +1,9 @@
-name: Android CI - Build APK
+name: Android CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
 
 jobs:
@@ -18,25 +19,16 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: 17
 
-      - name: Make Gradle wrapper executable
+      - name: Make Gradlew Executable
         run: chmod +x ./gradlew
 
-      - name: Cache Gradle packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*','**/gradle-wrapper.properties') }}
-
       - name: Build Debug APK
-        run: ./gradlew assembleDebug --no-daemon
+        run: ./gradlew assembleDebug
 
-      - name: Upload debug APK artifact
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
-          # include wildcard in case build produces different flavors/names
-          name: app-debug-apk-${{ github.run_id }}
-          path: app/build/outputs/apk/debug/*.apk
+          name: app-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk

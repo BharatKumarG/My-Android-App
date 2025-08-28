@@ -24,7 +24,6 @@ class MainActivity : ComponentActivity() {
     ) { isGranted: Boolean ->
         if (!isGranted) {
             // Handle the case where notification permission is denied
-            // You might want to show an explanation dialog
         }
     }
 

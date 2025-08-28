@@ -20,15 +20,7 @@ class TaskRepository @Inject constructor(
 
     suspend fun getTaskById(id: Long): Task? = taskDao.getTaskById(id)
 
-    suspend fun getTasksWithReminders(): List<Task> = taskDao.getTasksWithReminders()
-
     fun searchTasks(query: String): Flow<List<Task>> = taskDao.searchTasks(query)
-
-    fun getTasksByPriority(priority: Priority): Flow<List<Task>> = taskDao.getTasksByPriority(priority)
-
-    suspend fun getTasksDueToday(): List<Task> = taskDao.getTasksDueToday()
-
-    suspend fun getOverdueTasks(): List<Task> = taskDao.getOverdueTasks()
 
     suspend fun insertTask(task: Task): Long = taskDao.insertTask(task)
 
@@ -40,8 +32,6 @@ class TaskRepository @Inject constructor(
 
     suspend fun deleteTaskById(id: Long) = taskDao.deleteTaskById(id)
 
-    suspend fun deleteAllTasks() = taskDao.deleteAllTasks()
-
     suspend fun toggleTaskCompletion(task: Task) {
         val updatedTask = if (task.isCompleted) {
             task.copy(isCompleted = false, completedAt = null)
@@ -50,9 +40,6 @@ class TaskRepository @Inject constructor(
         }
         updateTask(updatedTask)
     }
-
-    suspend fun updateTaskReminder(id: Long, hasReminder: Boolean) = 
-        taskDao.updateTaskReminder(id, hasReminder)
 
     fun getActiveTaskCount(): Flow<Int> = taskDao.getActiveTaskCount()
 
